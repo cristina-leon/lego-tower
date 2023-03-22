@@ -92,7 +92,6 @@
     	});
     	redButton.addEventListener('click', () => {
     		addBlock('#E51E26');
-    		audio.play();
     	});
     
     	blueButton.addEventListener('mousedown', () => {
@@ -103,7 +102,6 @@
     	});
     	blueButton.addEventListener('click', () => {
     		addBlock('#006CB7');
-    		audio.play();
     	});
     
     	greenButton.addEventListener('mousedown', () => {
@@ -114,7 +112,6 @@
     	});
     	greenButton.addEventListener('click', () => {
     		addBlock('#00AF4D');
-    		audio.play();
     	});
     
     	yellowButton.addEventListener('mousedown', () => {
@@ -125,7 +122,6 @@
     	});
     	yellowButton.addEventListener('click', () => {
     		addBlock('#FFCD03');
-    		audio.play();
     	});
     
     	resetButton.addEventListener('click', () => {
@@ -136,6 +132,7 @@
     
     	// Function to add block to container and update brick count
     	function addBlock(color) {
+    		audio.play();
     		const block = document.createElement('div');
     		block.classList.add('block');
     		block.style.backgroundColor = color;
