@@ -52,7 +52,8 @@
 			border: none;
 			border-radius: 5px;
 			cursor: pointer;
-			width: 50px;
+			width: 60px;
+			text-align: center;
 		}
 		
 
@@ -76,6 +77,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
     	const audio = new Audio('click.mp3');
+    	const reset = new Audio('reset.mp3');
     	const container = document.querySelector('.container');
     	const redButton = document.querySelector('#add-red-block-button');
     	const blueButton = document.querySelector('#add-blue-block-button');
@@ -132,6 +134,7 @@
     		container.innerHTML = '';
     		const brickCount = document.querySelector('#brick-count');
     		brickCount.textContent = 'Bricks: 0';
+    		reset.play();
     	});
     
     	// Function to add block to container and update brick count
