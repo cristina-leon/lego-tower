@@ -7,18 +7,18 @@
 			display: flex;
 			flex-direction: column-reverse;
 			align-items: center;
-			height: 300px;
+			overflow-y: scroll;
 			width: 200px;
 		}
 
 		.block {
 			height: 20px;
 			width: 40px;
-			background-color: gray;
+			background-color: #E51E26;
 			flex-shrink: 0; 
 			position: relative;
 			border-radius: 5%;
-			border: 0.5px solid white;
+			border: 0.5px solid rgba(0, 0, 0, 0.25);
 		}
 
 		.block::before,
@@ -52,32 +52,28 @@
 			border: none;
 			border-radius: 5px;
 			cursor: pointer;
+			width: 50px;
 		}
+		
 
-		.button:disabled {
-			background-color: light-gray;
-			cursor: default;
-		}
-
-		.block.green {
-			border-color: #006F45;
-		}
 	</style>
 </head>
 <body>
 	<div style="display: flex; justify-content: space-between;">
 		<div class="container"></div>
 		<div class="button-container" style="display: flex; flex-direction: column; justify-content: flex-start; align-self: flex-end;">
-			<button id="add-red-block-button" class="button" style="background-color:#E51E26">Red</button>
-			<button id="add-blue-block-button" class="button" style="background-color:#006CB7">  Blue</button>
-			<button id="add-green-block-button" class="button" style="background-color:#00AF4D">  Green</button>
-			<button id="add-yellow-block-button" class="button" style="background-color:#FFCD03">  Yellow</button>
+			<button id="add-red-block-button" class="button" style="background-color:#E51E26">Red</button> 
+			<button id="add-blue-block-button" class="button" style="background-color:#006CB7">Blue</button>
+			<button id="add-green-block-button" class="button" style="background-color:#00AF4D">Green</button>
+			<button id="add-yellow-block-button" class="button" style="background-color:#FFCD03">Yellow</button>
 			<br>
 			<button id="reset-button" class="button">Reset</button>
 			<br>
 			<span id="brick-count" style="font-family: Arial;">Bricks: 0</span>
 		</div>
 	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		const audio = new Audio('click.mp3');
 		const container = document.querySelector('.container');
@@ -85,42 +81,39 @@
 		const blueButton = document.querySelector('#add-blue-block-button');
 		const greenButton = document.querySelector('#add-green-block-button');
 		const yellowButton = document.querySelector('#add-yellow-block-button');
-		const buttons = document.querySelectorAll('.button');
 		const resetButton = document.querySelector('#reset-button');
 
-		buttons.forEach(button => {
-			button.addEventListener('click', () => {
-				audio.play();	
-			});
-			button.addEventListener('mousedown', () => {
-				button.style.transform = 'translate(0px, 1px)';
-			});
-			button.addEventListener('mouseup', () => {
-				button.style.transform = 'translate(0px, -1px)';
-			});
+		redButton.addEventListener('click', () => {
+			audio.play();	
+		});
+		redButton.addEventListener('mousedown', () => {
+			redButton.style.transform = 'translate(0px, 1px)';
+		});
+		redButton.addEventListener('mouseup', () => {
+			redButton.style.transform = 'translate(0px, -1px)';
 		});
 
 
 		redButton.addEventListener('click', () => {
-			addBlock('rgb(229, 30, 38)');
+			addBlock('#E51E26');
 		});
 
 		blueButton.addEventListener('click', () => {
-			addBlock('rgb(0, 108, 183)');
+			addBlock('#006CB7');
 		});
 
 		greenButton.addEventListener('click', () => {
-			addBlock('rgb(0, 175, 77)');
+			addBlock('#00AF4D');
 		});
 
 		yellowButton.addEventListener('click', () => {
-			addBlock('rgb(255, 205, 3)');
+			addBlock('#FFCD03');
 		});
 
 		resetButton.addEventListener('click', () => {
 			container.innerHTML = '';
 			const brickCount = document.querySelector('#brick-count');
-			brickCount.textContent = "Bricks: 0";
+			brickCount.textContent = 'Bricks: 0';
 		});
 
         function addBlock(color) {
@@ -130,7 +123,7 @@
             container.appendChild(block);
         
             const brickCount = document.querySelector('#brick-count');
-            brickCount.textContent = "Bricks: " + (parseInt(brickCount.textContent.split(" ")[1]) + 1);
+            brickCount.textContent = `Bricks: ${parseInt(brickCount.textContent.split(' ')[1]) + 1}`;
 		}
 	</script>
 </body>
