@@ -75,53 +75,74 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
-		const audio = new Audio('click.mp3');
-		const container = document.querySelector('.container');
-		const redButton = document.querySelector('#add-red-block-button');
-		const blueButton = document.querySelector('#add-blue-block-button');
-		const greenButton = document.querySelector('#add-green-block-button');
-		const yellowButton = document.querySelector('#add-yellow-block-button');
-		const resetButton = document.querySelector('#reset-button');
-
-		
-		redButton.addEventListener('mousedown', () => {
-			redButton.style.transform = 'translate(0px, 1px)';
-		});
-		redButton.addEventListener('mouseup', () => {
-			redButton.style.transform = 'translate(0px, -1px)';
-		});
-
-
-		redButton.addEventListener('click', () => {
-			addBlock('#E51E26');
-		});
-
-		blueButton.addEventListener('click', () => {
-			addBlock('#006CB7');
-		});
-
-		greenButton.addEventListener('click', () => {
-			addBlock('#00AF4D');
-		});
-
-		yellowButton.addEventListener('click', () => {
-			addBlock('#FFCD03');
-		});
-
-		resetButton.addEventListener('click', () => {
-			container.innerHTML = '';
-			const brickCount = document.querySelector('#brick-count');
-			brickCount.textContent = 'Bricks: 0';
-		});
-
-        function addBlock(color) {
-            const block = document.createElement('div');
-            block.classList.add('block');
-            block.style.backgroundColor = color;
-            container.appendChild(block);
-        
-            const brickCount = document.querySelector('#brick-count');
-            brickCount.textContent = `Bricks: ${parseInt(brickCount.textContent.split(' ')[1]) + 1}`;
-		}
-	</script>
+    	const audio = new Audio('click.mp3');
+    	const container = document.querySelector('.container');
+    	const redButton = document.querySelector('#add-red-block-button');
+    	const blueButton = document.querySelector('#add-blue-block-button');
+    	const greenButton = document.querySelector('#add-green-block-button');
+    	const yellowButton = document.querySelector('#add-yellow-block-button');
+    	const resetButton = document.querySelector('#reset-button');
+    
+    	// Add button click event listeners
+    	redButton.addEventListener('mousedown', () => {
+    		redButton.style.transform = 'translate(0px, 1px)';
+    	});
+    	redButton.addEventListener('mouseup', () => {
+    		redButton.style.transform = 'translate(0px, -1px)';
+    	});
+    	redButton.addEventListener('click', () => {
+    		addBlock('#E51E26');
+    		audio.play();
+    	});
+    
+    	blueButton.addEventListener('mousedown', () => {
+    		blueButton.style.transform = 'translate(0px, 1px)';
+    	});
+    	blueButton.addEventListener('mouseup', () => {
+    		blueButton.style.transform = 'translate(0px, -1px)';
+    	});
+    	blueButton.addEventListener('click', () => {
+    		addBlock('#006CB7');
+    		audio.play();
+    	});
+    
+    	greenButton.addEventListener('mousedown', () => {
+    		greenButton.style.transform = 'translate(0px, 1px)';
+    	});
+    	greenButton.addEventListener('mouseup', () => {
+    		greenButton.style.transform = 'translate(0px, -1px)';
+    	});
+    	greenButton.addEventListener('click', () => {
+    		addBlock('#00AF4D');
+    		audio.play();
+    	});
+    
+    	yellowButton.addEventListener('mousedown', () => {
+    		yellowButton.style.transform = 'translate(0px, 1px)';
+    	});
+    	yellowButton.addEventListener('mouseup', () => {
+    		yellowButton.style.transform = 'translate(0px, -1px)';
+    	});
+    	yellowButton.addEventListener('click', () => {
+    		addBlock('#FFCD03');
+    		audio.play();
+    	});
+    
+    	resetButton.addEventListener('click', () => {
+    		container.innerHTML = '';
+    		const brickCount = document.querySelector('#brick-count');
+    		brickCount.textContent = 'Bricks: 0';
+    	});
+    
+    	// Function to add block to container and update brick count
+    	function addBlock(color) {
+    		const block = document.createElement('div');
+    		block.classList.add('block');
+    		block.style.backgroundColor = color;
+    		container.appendChild(block);
+    	
+    		const brickCount = document.querySelector('#brick-count');
+    		brickCount.textContent = `Bricks: ${parseInt(brickCount.textContent.split(' ')[1]) + 1}`;
+    	}
+    </script>
 </body>
