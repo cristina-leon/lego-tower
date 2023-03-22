@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lego Tower</title>
+	<style>
+		.container {
+			display: flex;
+			flex-direction: column-reverse;
+			align-items: center;
+			height: 300px;
+			width: 200px;
+		}
+
+		.block {
+			height: 20px;
+			width: 40px;
+			background-color: gray;
+			flex-shrink: 0; 
+			position: relative;
+			border-radius: 5%;
+			border: 0.5px solid white;
+		}
+
+		.block::before,
+		.block::after{
+			content: '';
+			position: absolute;
+			top: -6.5px;
+			width: 8px;
+			height: 6px;
+			border-radius: 10%;
+			background-color:inherit;
+		}
+
+		.block::before{
+			left: 6.5px;
+			border: 1px inherit;
+			border-bottom: none;
+		}
+
+		.block::after{
+			right: 6.5px;
+			border: 1px inherit;
+			border-bottom: none;
+
+		}
+
+		.button {
+			margin-top: 10px;
+			padding: 5px 10px;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		.button:disabled {
+			background-color: light-gray;
+			cursor: default;
+		}
+
+		.block.green {
+			border-color: #006F45;
+		}
+	</style>
+</head>
+<body>
+	<div style="display: flex;">
+		<div class="container"></div>
+		<div style="display: flex; flex-direction: column; justify-content: flex-start;">
+			<button id="add-red-block-button" class="button" style="background-color:#E51E26">Red</button>
+			<button id="add-blue-block-button" class="button" style="background-color:#006CB7">  Blue</button>
+			<button id="add-green-block-button" class="button" style="background-color:#00AF4D">  Green</button>
+			<button id="add-yellow-block-button" class="button" style="background-color:#FFCD03">  Yellow</button>
+			<br>
+			<button id="reset-button" class="button">Reset</button>
+			<br>
+			<span id="brick-count" style="font-family: Arial;">Bricks: 0</span>
+		</div>
+	</div>
+	<script>
+		const audio = new Audio('click.mp3');
+		const container = document.querySelector('.container');
+		const redButton = document.querySelector('#add-red-block-button');
+		const blueButton = document.querySelector('#add-blue-block-button');
+		const greenButton = document.querySelector('#add-green-block-button');
+		const yellowButton = document.querySelector('#add-yellow-block-button');
+		const buttons = document.querySelectorAll('.button');
+		const resetButton = document.querySelector('#reset-button');
+
+		buttons.forEach(button => {
+			button.addEventListener('click', () => {
+				audio.play();	
+			});
+			button.addEventListener('mousedown', () => {
+				button.style.transform = 'translate(0px, 1px)';
+			});
+			button.addEventListener('mouseup', () => {
+				button.style.transform = 'translate(0px, -1px)';
+			});
+		});
+
+
+		redButton.addEventListener('click', () => {
+			addBlock('rgb(229, 30, 38)');
+		});
+
+		blueButton.addEventListener('click', () => {
+			addBlock('rgb(0, 108, 183)');
+		});
+
+		greenButton.addEventListener('click', () => {
+			addBlock('rgb(0, 175, 77)');
+		});
+
+		yellowButton.addEventListener('click', () => {
+			addBlock('rgb(255, 205, 3)');
+		});
+
+		resetButton.addEventListener('click', () => {
+			container.innerHTML = '';
+			const brickCount = document.querySelector('#brick-count');
+			brickCount.textContent = "Bricks: 0";
+		});
+
+        function addBlock(color) {
+            const block = document.createElement('div');
+            block.classList.add('block');
+            block.style.backgroundColor = color;
+            container.appendChild(block);
+        
+            const brickCount = document.querySelector('#brick-count');
+            brickCount.textContent = "Bricks: " + (parseInt(brickCount.textContent.split(" ")[1]) + 1);
+		}
+	</script>
+</body>
